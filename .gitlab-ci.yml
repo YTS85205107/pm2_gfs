@@ -1,0 +1,11 @@
+image: docker:stable
+
+before_script:
+    - docker info
+    
+Test-site:
+    stage: build
+    script:
+    #tsreward
+    - docker build -t dockerhubken.12.com/pm2_gfsclient dockerfile/
+    - docker push dockerhubken.12.com/pm2_gfsclient 
