@@ -1,0 +1,18 @@
+From ubuntu:18.04
+MAINTAINER ken
+
+RUN mkdir /pm2
+RUN apt update ; \
+    apt install nodejs -y ; \
+    apt install npm -y ; \
+    npm install pm2 -g ; \
+    apt install glusterfs-client -y ; \
+    apt install iputils-ping -y ; \
+    apt clean ; \
+    apt-get clean ; \
+    rm -rf /var/lib/apt/lists/*
+WORKDIR /pm2
+ADD startup.sh /startup.sh
+Run chmod 777 /startup.sh
+
+ENTRYPOINT ["/startup.sh"]
